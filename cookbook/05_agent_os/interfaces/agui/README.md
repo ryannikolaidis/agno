@@ -3,6 +3,7 @@
 Examples for `interfaces/agui` in AgentOS.
 
 ## Files
+- `activity_events.py` — Workflow progress dual-emitted as opt-in AG-UI ACTIVITY events (wire-only today; renderer snippet in the docstring).
 - `agent_with_media.py` — Accept multimodal user input (image, audio, video, document).
 - `agent_with_tools.py` — Agent with backend tools.
 - `agentic_chat.py` — Chat with frontend tools (change_background) and backend tools (get_weather).
@@ -12,6 +13,7 @@ Examples for `interfaces/agui` in AgentOS.
 - `multiple_instances.py` — Multiple agent instances.
 - `reasoning_agent.py` — Agent with reasoning/thinking display.
 - `research_team.py` — Multi-agent research team.
+- `session_rehydration.py` — Session history rehydration via opt-in MESSAGES_SNAPSHOT at run start.
 - `shared_state.py` — Shared state between agents.
 - `showcase.py` — Single server exposing all Dojo demo endpoints.
 - `state_events.py` — Outbound state synchronization via STATE_SNAPSHOT + STATE_DELTA events.
