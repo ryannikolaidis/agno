@@ -499,6 +499,10 @@ def process_completion(chunk: BaseRunOutputEvent, state: StreamState) -> List[Ba
     # Workflow terminal: close open streams, emit the workflow-specific events,
     # and finalize only for completed (error ends on RunErrorEvent, no finish).
     events = _close_open_streams(state)
+    if not workflow_handlers.is_workflow_completed(chunk):
+        # Workflow error terminal (yielded, not raised): terminalize progress to ERROR
+        # and emit the final snapshot BEFORE the RUN_ERROR (workflow_completion_events).
+        events += workflow_progress.error_snapshot(state)
     events += workflow_handlers.workflow_completion_events(chunk, state)
     if workflow_handlers.is_workflow_completed(chunk):
         workflow_progress.mark_completed(state)
