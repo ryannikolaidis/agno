@@ -26,7 +26,7 @@ from ag_ui.core import (
 )
 
 from agno.models.response import ToolExecution
-from agno.os.interfaces.agui import workflow_handlers, workflow_progress
+from agno.os.interfaces.agui import activity, workflow_handlers, workflow_progress
 from agno.os.interfaces.agui.state import StreamState
 from agno.os.interfaces.agui.utils import to_json_str
 from agno.reasoning.step import ReasoningStep
@@ -403,8 +403,9 @@ def _finalize_run(chunk: BaseRunOutputEvent, state: StreamState) -> List[BaseEve
 
             events.append(ToolCallEndEvent(type=EventType.TOOL_CALL_END, tool_call_id=tool.tool_call_id))
 
-    # Emit final state snapshot, then close the run.
+    # Emit final state snapshot (then its activity twin, if enabled), then close the run.
     events += _final_snapshot(chunk, state)
+    events += activity.terminal_snapshot(state)
     events.append(RunFinishedEvent(type=EventType.RUN_FINISHED, thread_id=state.thread_id, run_id=state.run_id))
     return events
 
