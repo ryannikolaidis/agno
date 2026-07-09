@@ -18,6 +18,7 @@ Examples for `interfaces/agui` in AgentOS.
 - `structured_output.py` — Structured output schema.
 - `team_state_events.py` — Team state synchronization.
 - `tool_based_generative_ui.py` — Generative UI using tool-based approach.
+- `workflow_progress.py` — Native AG-UI workflow progress via STATE (`workflow_progress.steps`) + STEP.
 
 ## Prerequisites
 - Load environment variables with `direnv allow` (requires `.envrc`).
